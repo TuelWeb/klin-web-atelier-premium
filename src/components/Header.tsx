@@ -62,7 +62,7 @@ const Header = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8 font-medium">
-            <div className="flex space-x-8">
+            <div className="flex items-center space-x-8">
               <div>
                 <NavigationMenu>
                   <NavigationMenuList>
@@ -107,12 +107,14 @@ const Header = () => {
                   </NavigationMenuList>
                 </NavigationMenu>
               </div>
-              <Link to="/categories/accessoires" className="link-hover">Accessoires</Link>
+              <div>
+                <Link to="/categories/accessoires" className="link-hover">Accessoires</Link>
+              </div>
             </div>
           </nav>
           
           {/* Icons */}
-          <div className="flex items-center space-x-4 ml-auto lg:ml-0">
+          <div className="flex items-center justify-end ml-auto lg:ml-0 lg:w-[70px]">
             <Link to="/contact" className="text-klin-primary hover:text-klin-hover">
               <MessageSquare size={20} />
             </Link>
