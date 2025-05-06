@@ -100,36 +100,31 @@ const HeroSection = ({ items }: HeroProps) => {
   }
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 h-[70vh]">
-      {items.map((item, index) => {
-        let colSpan = '';
-        if (index === 0) colSpan = 'md:col-span-2 md:row-span-2';
-        
-        return (
-          <div
-            key={index}
-            className={`relative overflow-hidden group ${colSpan} animate-fade-in`}
-            style={{ animationDelay: `${index * 200}ms` }}
-          >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors"></div>
-            <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">{item.title}</h2>
-              <p className="mb-4 max-w-md">{item.description}</p>
-              <Link
-                to={item.link}
-                className="inline-block bg-white text-klin-primary px-6 py-3 font-medium transition-colors hover:bg-gray-100"
-              >
-                Découvrir
-              </Link>
-            </div>
+    <div className="grid grid-cols-3 gap-4 h-[70vh]">
+      {items.map((item, index) => (
+        <div
+          key={index}
+          className="relative overflow-hidden group animate-fade-in"
+          style={{ animationDelay: `${index * 200}ms` }}
+        >
+          <img
+            src={item.image}
+            alt={item.title}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
+          <div className="absolute inset-0 flex flex-col justify-end p-6 text-white">
+            <h2 className="text-2xl md:text-3xl font-bold mb-2">{item.title}</h2>
+            <p className="mb-4 max-w-md">{item.description}</p>
+            <Link
+              to={item.link}
+              className="inline-block bg-white text-klin-primary px-6 py-3 font-medium transition-colors hover:bg-gray-100"
+            >
+              Découvrir
+            </Link>
           </div>
-        );
-      })}
+        </div>
+      ))}
     </div>
   );
 };

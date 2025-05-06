@@ -1,8 +1,16 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ShoppingBag, MessageSquare } from 'lucide-react';
+import { Menu, X, MessageSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { 
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from '@/components/ui/navigation-menu';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -54,22 +62,59 @@ const Header = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8 font-medium">
-            <Link to="/categories/chemises" className="link-hover">Chemises</Link>
-            <Link to="/categories/costumes" className="link-hover">Costumes</Link>
-            <Link to="/categories/tee-shirts" className="link-hover">Tee-shirts</Link>
-            <Link to="/categories/pulls-et-gilets" className="link-hover">Pulls & Gilets</Link>
-            <Link to="/categories/pantalons" className="link-hover">Pantalons</Link>
-            <Link to="/categories/shorts" className="link-hover">Shorts</Link>
-            <Link to="/categories/accessoires" className="link-hover">Accessoires</Link>
+            <div className="flex space-x-8">
+              <div>
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger>Haut</NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid gap-3 p-4 w-[200px]">
+                          <li>
+                            <Link to="/categories/chemises" className="block p-2 hover:bg-klin-light">Chemises</Link>
+                          </li>
+                          <li>
+                            <Link to="/categories/costumes" className="block p-2 hover:bg-klin-light">Costumes</Link>
+                          </li>
+                          <li>
+                            <Link to="/categories/tee-shirts" className="block p-2 hover:bg-klin-light">Tee-shirts</Link>
+                          </li>
+                          <li>
+                            <Link to="/categories/pulls-et-gilets" className="block p-2 hover:bg-klin-light">Pulls & Gilets</Link>
+                          </li>
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  </NavigationMenuList>
+                </NavigationMenu>
+              </div>
+              <div>
+                <NavigationMenu>
+                  <NavigationMenuList>
+                    <NavigationMenuItem>
+                      <NavigationMenuTrigger>Bas</NavigationMenuTrigger>
+                      <NavigationMenuContent>
+                        <ul className="grid gap-3 p-4 w-[200px]">
+                          <li>
+                            <Link to="/categories/pantalons" className="block p-2 hover:bg-klin-light">Pantalons</Link>
+                          </li>
+                          <li>
+                            <Link to="/categories/shorts" className="block p-2 hover:bg-klin-light">Shorts</Link>
+                          </li>
+                        </ul>
+                      </NavigationMenuContent>
+                    </NavigationMenuItem>
+                  </NavigationMenuList>
+                </NavigationMenu>
+              </div>
+              <Link to="/categories/accessoires" className="link-hover">Accessoires</Link>
+            </div>
           </nav>
           
           {/* Icons */}
           <div className="flex items-center space-x-4 ml-auto lg:ml-0">
             <Link to="/contact" className="text-klin-primary hover:text-klin-hover">
               <MessageSquare size={20} />
-            </Link>
-            <Link to="/panier" className="text-klin-primary hover:text-klin-hover">
-              <ShoppingBag size={20} />
             </Link>
           </div>
         </div>
@@ -81,15 +126,30 @@ const Header = () => {
         isMenuOpen ? "translate-x-0" : "translate-x-full"
       )}>
         <div className="container-klin py-8">
-          <nav className="flex flex-col space-y-6">
-            <Link to="/categories/chemises" className="text-lg font-medium" onClick={toggleMenu}>Chemises</Link>
-            <Link to="/categories/costumes" className="text-lg font-medium" onClick={toggleMenu}>Costumes</Link>
-            <Link to="/categories/tee-shirts" className="text-lg font-medium" onClick={toggleMenu}>Tee-shirts</Link>
-            <Link to="/categories/pulls-et-gilets" className="text-lg font-medium" onClick={toggleMenu}>Pulls & Gilets</Link>
-            <Link to="/categories/pantalons" className="text-lg font-medium" onClick={toggleMenu}>Pantalons</Link>
-            <Link to="/categories/shorts" className="text-lg font-medium" onClick={toggleMenu}>Shorts</Link>
-            <Link to="/categories/accessoires" className="text-lg font-medium" onClick={toggleMenu}>Accessoires</Link>
-          </nav>
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">Haut</h3>
+            <nav className="flex flex-col space-y-4">
+              <Link to="/categories/chemises" className="text-lg" onClick={toggleMenu}>Chemises</Link>
+              <Link to="/categories/costumes" className="text-lg" onClick={toggleMenu}>Costumes</Link>
+              <Link to="/categories/tee-shirts" className="text-lg" onClick={toggleMenu}>Tee-shirts</Link>
+              <Link to="/categories/pulls-et-gilets" className="text-lg" onClick={toggleMenu}>Pulls & Gilets</Link>
+            </nav>
+          </div>
+          
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">Bas</h3>
+            <nav className="flex flex-col space-y-4">
+              <Link to="/categories/pantalons" className="text-lg" onClick={toggleMenu}>Pantalons</Link>
+              <Link to="/categories/shorts" className="text-lg" onClick={toggleMenu}>Shorts</Link>
+            </nav>
+          </div>
+          
+          <div className="mb-8">
+            <h3 className="text-lg font-medium mb-4">Accessoires</h3>
+            <nav className="flex flex-col space-y-4">
+              <Link to="/categories/accessoires" className="text-lg" onClick={toggleMenu}>Accessoires</Link>
+            </nav>
+          </div>
           
           <div className="mt-12 space-y-6">
             <Link to="/contact" className="block text-lg font-medium" onClick={toggleMenu}>Contact</Link>
