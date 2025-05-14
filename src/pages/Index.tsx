@@ -1,4 +1,3 @@
-
 import React from 'react';
 import HeroSection from '@/components/HeroSection';
 import ProductGrid from '@/components/ProductGrid';
@@ -11,22 +10,22 @@ import { Link } from 'react-router-dom';
 
 const heroItems = [
   {
-    image: 'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?q=80&w=1160&auto=format&fit=crop',
-    title: 'Costumes',
-    description: 'Élégance et raffinement pour toutes les occasions',
-    link: '/categories/costumes'
+    title: 'Élégance Masculine',
+    description: 'Découvrez notre collection de costumes raffinés, taillés pour l'excellence et la distinction',
+    link: '/categories/costumes',
+    accentColor: '#014555'
   },
   {
-    image: 'https://images.unsplash.com/photo-1624222247344-550fb60acc26?q=80&w=1287&auto=format&fit=crop',
-    title: 'Accessoires',
-    description: 'Le détail qui fait la différence',
-    link: '/categories/accessoires'
+    title: 'Accessoires de Caractère',
+    description: 'Complétez votre style avec nos accessoires soigneusement sélectionnés pour chaque occasion',
+    link: '/categories/accessoires',
+    accentColor: '#D18F55'
   },
   {
-    image: 'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?q=80&w=1025&auto=format&fit=crop',
-    title: 'Chemises',
-    description: 'Qualité et style au quotidien',
-    link: '/categories/chemises'
+    title: 'Chemises d\'Exception',
+    description: 'L'alliance parfaite du confort et du style pour sublimer votre garde-robe au quotidien',
+    link: '/categories/chemises',
+    accentColor: '#5A7D7C'
   }
 ];
 
