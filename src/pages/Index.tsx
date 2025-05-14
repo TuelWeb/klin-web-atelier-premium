@@ -1,3 +1,4 @@
+
 import React from 'react';
 import HeroSection from '@/components/HeroSection';
 import ProductGrid from '@/components/ProductGrid';
@@ -11,7 +12,7 @@ import { Link } from 'react-router-dom';
 const heroItems = [
   {
     title: 'Élégance Masculine',
-    description: 'Découvrez notre collection de costumes raffinés, taillés pour l'excellence et la distinction',
+    description: 'Découvrez notre collection de costumes raffinés, taillés pour l\'excellence et la distinction',
     link: '/categories/costumes',
     accentColor: '#014555'
   },
@@ -23,7 +24,7 @@ const heroItems = [
   },
   {
     title: 'Chemises d\'Exception',
-    description: 'L'alliance parfaite du confort et du style pour sublimer votre garde-robe au quotidien',
+    description: 'L\'alliance parfaite du confort et du style pour sublimer votre garde-robe au quotidien',
     link: '/categories/chemises',
     accentColor: '#5A7D7C'
   }
