@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { AspectRatio } from '@/components/ui/aspect-ratio';
 
 interface HeroProps {
   items: {
@@ -35,110 +37,109 @@ const HeroSection = ({ items }: HeroProps) => {
     setActiveIndex((prevIndex) => (prevIndex === 0 ? items.length - 1 : prevIndex - 1));
   };
 
-  if (isMobile) {
-    return (
-      <div className="relative h-[70vh] overflow-hidden bg-klin-light">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-full h-full relative">
-            {items.map((item, index) => (
-              <div
-                key={index}
-                className="absolute inset-0 transition-opacity duration-500 ease-in-out flex flex-col items-center justify-center p-6"
-                style={{ 
-                  opacity: index === activeIndex ? 1 : 0, 
-                  zIndex: index === activeIndex ? 10 : 0,
-                }}
-              >
-                <div className="text-center max-w-md mx-auto">
-                  <span 
-                    className="block mb-4 text-4xl font-bold"
-                    style={{ color: item.accentColor }}
-                  >
+  // Single full-width hero with animated transitions for both mobile and desktop
+  return (
+    <div className="relative h-[85vh] overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")", backgroundSize: "24px 24px" }}></div>
+      </div>
+      
+      <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+        <div className="w-full h-full relative">
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className={cn(
+                "absolute inset-0 transition-all duration-700 ease-in-out flex flex-col items-center justify-center p-8",
+                activeIndex === index ? "opacity-100 transform translate-y-0" : "opacity-0 transform translate-y-8"
+              )}
+              style={{ zIndex: index === activeIndex ? 10 : 0 }}
+            >
+              <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
+                <h1 
+                  className="text-4xl md:text-7xl font-bold mb-6 text-white tracking-tight"
+                  style={{ 
+                    textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+                  }}
+                >
+                  <span className="relative inline-block">
                     {item.title}
+                    <span 
+                      className="absolute bottom-0 left-0 w-full h-1 transform -translate-y-2"
+                      style={{ background: item.accentColor }}
+                    ></span>
                   </span>
-                  <p className="mb-8 text-klin-text text-lg">{item.description}</p>
-                  <Link
-                    to={item.link}
-                    className="inline-block bg-klin-primary text-white px-8 py-3 font-medium transition-colors hover:bg-klin-hover"
-                    style={{ 
-                      background: item.accentColor,
-                      boxShadow: `0 4px 14px rgba(0, 0, 0, 0.2)` 
-                    }}
-                  >
-                    Découvrir
-                  </Link>
-                </div>
+                </h1>
+                
+                <p 
+                  className="mb-10 text-gray-100 text-xl md:text-2xl max-w-2xl mx-auto font-light"
+                  style={{ textShadow: "0 1px 3px rgba(0,0,0,0.3)" }}
+                >
+                  {item.description}
+                </p>
+                
+                <Link
+                  to={item.link}
+                  className={cn(
+                    "inline-block text-white px-10 py-4 text-lg font-medium transition-all border-2 hover:bg-white hover:text-gray-900",
+                    "transform hover:scale-105 hover:shadow-xl"
+                  )}
+                  style={{ 
+                    borderColor: item.accentColor,
+                    boxShadow: `0 4px 20px rgba(0, 0, 0, 0.3)` 
+                  }}
+                >
+                  Découvrir la Collection
+                </Link>
               </div>
-            ))}
-          </div>
+              
+              {/* Large styled letter in the background */}
+              <div 
+                className="absolute text-[25rem] font-bold opacity-10 pointer-events-none select-none"
+                style={{ color: item.accentColor }}
+              >
+                {item.title.charAt(0)}
+              </div>
+            </div>
+          ))}
         </div>
-        
+      </div>
+      
+      {/* Navigation arrows */}
+      <div className="absolute z-20 bottom-10 left-0 right-0 flex justify-center space-x-8">
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 p-2 rounded-full shadow-lg"
+          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-3 rounded-full transition-all hover:scale-110"
           aria-label="Précédent"
         >
-          <ChevronLeft size={20} className="text-klin-primary" />
+          <ChevronLeft size={24} />
         </button>
         
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-white/80 p-2 rounded-full shadow-lg"
-          aria-label="Suivant"
-        >
-          <ChevronRight size={20} className="text-klin-primary" />
-        </button>
-        
-        <div className="absolute bottom-24 left-0 right-0 z-20 flex justify-center space-x-2">
+        <div className="flex items-center space-x-3">
           {items.map((_, index) => (
             <button
               key={index}
               onClick={() => setActiveIndex(index)}
-              className={`w-2 h-2 rounded-full ${
-                index === activeIndex ? 'bg-klin-primary' : 'bg-klin-primary/30'
-              }`}
+              className={cn(
+                "w-3 h-3 rounded-full transition-all",
+                index === activeIndex 
+                  ? "bg-white scale-125" 
+                  : "bg-white/40 hover:bg-white/60"
+              )}
               aria-label={`Aller à l'élément ${index + 1}`}
             />
           ))}
         </div>
-      </div>
-    );
-  }
-
-  return (
-    <div className="grid grid-cols-3 gap-4 h-[70vh]">
-      {items.map((item, index) => (
-        <div
-          key={index}
-          className="relative overflow-hidden group animate-fade-in flex flex-col items-center justify-center p-8"
-          style={{ 
-            animationDelay: `${index * 200}ms`,
-            background: `linear-gradient(135deg, white, ${item.accentColor}15)`,
-            borderTop: `4px solid ${item.accentColor}`,
-          }}
+        
+        <button
+          onClick={nextSlide}
+          className="bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white p-3 rounded-full transition-all hover:scale-110"
+          aria-label="Suivant"
         >
-          <div className="text-center">
-            <h2 
-              className="text-2xl md:text-4xl font-bold mb-4 transition-transform duration-300 group-hover:scale-105"
-              style={{ color: item.accentColor }}
-            >
-              {item.title}
-            </h2>
-            <div className="w-16 h-1 mx-auto mb-6" style={{ background: item.accentColor }}></div>
-            <p className="mb-8 max-w-md text-lg">{item.description}</p>
-            <Link
-              to={item.link}
-              className="inline-block text-white px-8 py-3 font-medium transition-all hover:scale-105"
-              style={{ 
-                background: item.accentColor,
-                boxShadow: `0 4px 14px rgba(0, 0, 0, 0.15)` 
-              }}
-            >
-              Découvrir
-            </Link>
-          </div>
-        </div>
-      ))}
+          <ChevronRight size={24} />
+        </button>
+      </div>
     </div>
   );
 };

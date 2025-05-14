@@ -1,4 +1,3 @@
-
 import React from 'react';
 import HeroSection from '@/components/HeroSection';
 import ProductGrid from '@/components/ProductGrid';
@@ -7,26 +6,25 @@ import { getBestsellers, getNewProducts } from '@/data/products';
 import Accordion from '@/components/Accordion';
 import ContactForm from '@/components/ContactForm';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 const heroItems = [
   {
-    title: 'Élégance Masculine',
-    description: 'Découvrez notre collection de costumes raffinés, taillés pour l\'excellence et la distinction',
+    title: 'L\'Élégance au Masculin',
+    description: 'Découvrez notre nouvelle collection de costumes raffinés, créés pour les hommes qui comprennent que le style est une déclaration de caractère et d\'assurance.',
     link: '/categories/costumes',
-    accentColor: '#014555'
-  },
-  {
-    title: 'Accessoires de Caractère',
-    description: 'Complétez votre style avec nos accessoires soigneusement sélectionnés pour chaque occasion',
-    link: '/categories/accessoires',
     accentColor: '#D18F55'
   },
   {
-    title: 'Chemises d\'Exception',
-    description: 'L\'alliance parfaite du confort et du style pour sublimer votre garde-robe au quotidien',
-    link: '/categories/chemises',
+    title: 'Accessoires Distinctifs',
+    description: 'Complétez votre style avec notre gamme d\'accessoires soigneusement sélectionnés pour apporter cette touche finale qui transforme le beau en exceptionnel.',
+    link: '/categories/accessoires',
     accentColor: '#5A7D7C'
+  },
+  {
+    title: 'L\'Excellence Vestimentaire',
+    description: 'Chemises, pantalons et vestes confectionnés avec précision dans des matériaux nobles pour vous accompagner dans chaque moment important de votre vie.',
+    link: '/categories/chemises',
+    accentColor: '#9b87f5'
   }
 ];
 
@@ -98,8 +96,8 @@ const Index = () => {
   const bestsellers = getBestsellers(4);
   
   return (
-    <div className="pt-20">
-      {/* Hero Section */}
+    <div>
+      {/* Hero Section - No top padding for full-screen effect */}
       <section className="mb-24">
         <HeroSection items={heroItems} />
       </section>
